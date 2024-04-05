@@ -1,3 +1,21 @@
+export const fetchRaffleHistory = async (ordinalAddress: string) => {
+  console.log("fetching history faffles", ordinalAddress);
+  const response = await fetch(`/api/getRaffleHistory`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      ordinalAddress,
+    }),
+  });
+  console.log(response);
+  if (response.status == 200) {
+    const data = await response.json();
+    return data;
+  } else {
+    return undefined;
+  }
+};
+
 export const fetchRaffles = async () => {
   console.log("fetching faffles");
   const response = await fetch(`/api/raffle`);
